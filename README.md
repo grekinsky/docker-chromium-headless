@@ -1,2 +1,2 @@
 # docker-chromium-headless
-Docker chromium headless with Nodejs 6.x and Yarn
+Docker image for headless testing using chromium with Nodejs 6.x and Yarn.
