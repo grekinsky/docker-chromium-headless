@@ -5,5 +5,5 @@ Xvfb $DISPLAY -ac -screen 0 1280x1024x8 & \
 if [ "$RESULTFILE" != "" ]; then
     chmod 666 $RESULTFILE;
     echo "Changed permissions to result file $RESULTFILE";
-    exit 1;
+    exit 0;
 fi
