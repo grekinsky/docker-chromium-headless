@@ -1,12 +1,15 @@
-FROM markadams/chromium-xvfb-js:6
+FROM node:7.10.1-stretch
 
-RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - \
-    && echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list \
-    && apt-get update && apt-get install -y libgconf-2-4 bzip2 yarn \
-    && rm -rf /var/lib/apt/lists
+RUN apt-get update && apt-get install -y libgconf-2-4 curl xvfb chromium
 
 ADD https://github.com/Yelp/dumb-init/releases/download/v1.2.0/dumb-init_1.2.0_amd64 /usr/local/bin/dumb-init
 RUN chmod +x /usr/local/bin/dumb-init
+
+ADD xvfb-chromium /usr/bin/xvfb-chromium
+RUN ln -s /usr/bin/xvfb-chromium /usr/bin/google-chrome
+RUN ln -s /usr/bin/xvfb-chromium /usr/bin/chromium-browser
+
+WORKDIR /usr/src/app
 
 COPY start.sh /usr/src/config/start.sh
 
