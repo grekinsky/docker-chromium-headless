@@ -1,9 +1,7 @@
 # docker-chromium-headless
-> Docker image for headless testing using chromium with Nodejs 6.x and Yarn.
+> Docker image for headless testing using chromium with Nodejs 10.x and NPM.
 
 This image is tailored for running e2e tests using javascript frameworks like Cucumber.js and Chimp.js.
-
-It uses yarn to manage node packages.
 
 ### Example:
 
@@ -13,9 +11,9 @@ FROM grekinsky/chromium-headless-testing
 ENV HOME=/usr/src/app
 
 COPY package.json $HOME/package.json
-COPY yarn.lock $HOME/yarn.lock
+COPY package-lock.json $HOME/package-lock.json
 
-RUN yarn
+RUN npm install
 
 COPY . $HOME
 ```
